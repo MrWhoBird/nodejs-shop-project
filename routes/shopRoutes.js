@@ -2,6 +2,7 @@ import express from "express";
 import path from 'path';
 //import { fileURLToPath } from 'url';
 import rootDir from '../util/path.js';
+import { data } from './adminRoutes.js';
 
 const router = express.Router();
 // const __filename = fileURLToPath(import.meta.url);
@@ -22,6 +23,7 @@ router.use((req, res, next) => {
 router.get('/', (req, res) => {
     //res.send('<h1>Hello from Express!</h1>');
     //res.sendFile("shop.html", { root: viewsPath });
+    console.log(data);
     res.sendFile(path.join(rootDir, 'views', 'shop.html'));
     console.log('In the middleware!');
 });

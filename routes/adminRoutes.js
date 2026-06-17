@@ -4,6 +4,7 @@ import path from 'path';
 import rootDir from '../util/path.js';
 
 const router = express.Router();
+const data = [];
 //const __filename = fileURLToPath(import.meta.url);
 //const __dirname = path.dirname(__filename);
 //const viewsPath = path.join(__dirname, '..', 'views');
@@ -18,7 +19,9 @@ router.get('/add-product', (req, res) => {
 
 router.post('/add-product', (req, res) => {
     console.log(req.body);
+    data.push({ title: req.body.title, price: req.body.price, description: req.body.description });
     res.redirect('/');
 });
 
 export default router;
+export { data };

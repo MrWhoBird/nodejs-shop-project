@@ -1,7 +1,9 @@
 import express from "express";
 import path from 'path';
+import ejsLayouts from 'express-ejs-layouts';
 //import { fileURLToPath } from 'url';
 import rootDir from './util/path.js';
+import connect from './server/config/connect.js';
 
 //const __filename = fileURLToPath(import.meta.url);
 //const __dirname = path.dirname(__filename);
@@ -14,6 +16,14 @@ import shopRoutes from './routes/shopRoutes.js';
 import bodyParser from 'body-parser';
 
 const app = express();
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`App listening on port ${PORT}`)
+});
+
+app.use(ejsLayouts);
+app.set('layout', '../views/layouts/main.ejs');
+app.set('view engine', 'ejs');
 
 // to parse the body of the request and make it available in req.body
 app.use(bodyParser.json());
@@ -29,5 +39,3 @@ app.use((req, res) => {
     //res.status(404).sendFile("404.html", { root: viewsPath });
     res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
 });
-
-app.listen(3000);
