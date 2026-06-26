@@ -2,7 +2,8 @@ import express from "express";
 import path from 'path';
 //import { fileURLToPath } from 'url';
 import rootDir from '../util/path.js';
-import { data } from './adminRoutes.js';
+// import { data } from './adminRoutes.js';
+import adminController from '../controllers/adminController.js';
 
 const router = express.Router();
 // const __filename = fileURLToPath(import.meta.url);
@@ -20,12 +21,6 @@ router.use((req, res, next) => {
 });
 
 // This route handles GET requests to the root path "/".
-router.get('/', (req, res) => {
-    //res.send('<h1>Hello from Express!</h1>');
-    //res.sendFile("shop.html", { root: viewsPath });
-    console.log(data);
-    res.sendFile(path.join(rootDir, 'views', 'shop.html'));
-    console.log('In the middleware!');
-});
+router.get('/', adminController.shopPage);
 
 export default router;
