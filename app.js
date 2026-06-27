@@ -1,44 +1,29 @@
 import express from "express";
-import path from 'path';
-import ejsLayouts from 'express-ejs-layouts';
-//import { fileURLToPath } from 'url';
-import rootDir from './util/path.js';
-import connect from './server/config/connect.js';
-
-//const __filename = fileURLToPath(import.meta.url);
-//const __dirname = path.dirname(__filename);
-//const viewsPath = path.join(__dirname, 'views');
-
+import './server/config/dotenv.js';
 
 import adminRoutes from './routes/adminRoutes.js';
 import shopRoutes from './routes/shopRoutes.js';
-import errorController from './controllers/errorController.js';
-
-import bodyParser from 'body-parser';
+import utilRoutes from './routes/utilRoutes.js';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`App listening on port ${PORT}`)
 });
 
-//app.use(ejsLayouts);
-//app.set('layout', '../views/layouts/main.ejs');
+// define the view engine and the views folder
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 
-// to parse the body of the request and make it available in req.body
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// parse the body of the request and make it available in req.body
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// admin routes will be prefixed with /admin
 app.use('/admin', adminRoutes);
+
+// shop routes for standard user
 app.use(shopRoutes);
 
-
 // handle all other requests that are not handled by the above route
-app.use(errorController.display404
-    //res.status(404).send('<h1>Page Not Found</h1>');
-    //res.status(404).sendFile("404.html", { root: viewsPath });
-    //res.status(404).sendFile(path.join(rootDir, 'views', '404.html'));
-    // res.status(404).render('404', { pageTitle: 'Page Not Found ejs' });
-);
+app.use(utilRoutes);

@@ -5,4 +5,4 @@ const display404 = (req, res, next) => {
     });
 };
 
-export default { display404 };
+export default {display404};

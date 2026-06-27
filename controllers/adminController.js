@@ -1,38 +1,46 @@
-const data = [];
+// const data = [];
+import Product from '../models/product.js';
 
 const getAddProduct = (req, res) => {
-    //res.sendFile(path.join(viewsPath, 'add-product.html'));
-    //res.sendFile("add-product.html", { root: viewsPath });
-    //res.sendFile(path.join(rootDir, 'views', 'add-product.html'));
-    res.render('add-product', { 
+    res.render('add-product', {
         pageTitle: 'Add Product ejs',
         path: '/admin/add-product'
     });
 };
 
 const postAddProduct = (req, res) => {
-    console.log(req.body);
+    const product = new Product(
+        req.body.title,
+        req.body.price,
+        req.body.description
+    );
+    product.save();
+    console.log('dane:', req.body);
+    console.log('product:', product);
+    console.log('title:', product.title);
     // dont need this anymore 
     // since we are using the Product class to store the data?
-    data.push({ 
-        title: req.body.title, 
-        price: req.body.price, 
-        description: req.body.description
-    });
+    // data.push({
+    //     title: req.body.title,
+    //     price: req.body.price,
+    //     description: req.body.description
+    // });
     res.redirect('/');
 }
 
 const shopPage = (req, res) => {
-    //res.send('<h1>Hello from Express!</h1>');
-    //res.sendFile("shop.html", { root: viewsPath });
-    console.log(data);
-    //res.sendFile(path.join(rootDir, 'views', 'shop.html'));
-    res.render('shop', { 
+    //console.log(data);
+    const products = Product.fetchAll();
+    console.log('products fetched:', products);
+    res.render('shop', {
         pageTitle: 'Shop ejs',
-        products: data,
+        //products: data,
+        //products: Product.fetchAll(),
+        products: products,
         path: '/'
     });
     console.log('In the middleware!');
 }
 
-export default {getAddProduct, postAddProduct, shopPage, data};
+//export default { getAddProduct, postAddProduct, shopPage, data };
+export default { getAddProduct, postAddProduct, shopPage, data: Product.fetchAll() };

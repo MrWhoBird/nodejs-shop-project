@@ -1,8 +1,10 @@
 const products = [];
 
 class Product {
-    constructor(title) {
+    constructor(title, price, description) {
         this.title = title;
+        this.price = price;
+        this.description = description;
     }
 
     save() {
@@ -15,3 +17,5 @@ class Product {
         return products;
     }
 }
+
+export default Product;
