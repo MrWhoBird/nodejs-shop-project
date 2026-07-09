@@ -16,8 +16,10 @@ const getProductsFromFile = () => {
 };
 
 class Product {
-    constructor(title, price, description) {
+    constructor(title, pictureUrl, price, description) {
+        this.id = Date.now().toString();
         this.title = title;
+        this.pictureUrl = pictureUrl;
         this.price = price;
         this.description = description;
     }
@@ -33,6 +35,12 @@ class Product {
     // without creating a new Product instance.
     static fetchAll() {
         return getProductsFromFile();
+    }
+
+    static deleteById(id) {
+        const products = getProductsFromFile();
+        const updatedProducts = products.filter(product => product.id !== id);
+        fs.writeFileSync(productsFilePath, JSON.stringify(updatedProducts));
     }
 }
 

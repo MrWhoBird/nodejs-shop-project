@@ -1,0 +1,36 @@
+<html lang="en">
+
+<%- include('../includes/head.ejs') %>
+
+    <body>
+        <%- include('../includes/navigation.ejs') %>
+            <main class="container py-4">
+                <h1 class="mb-4">Add Product</h1>
+
+                <form action="/admin/add-product" method="POST" class="w-100" style="max-width: 520px;">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" id="title" name="title" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pictureUrl" class="form-label">Picture URL</label>
+                        <input type="text" id="pictureUrl" name="pictureUrl" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" id="price" name="price" step="0.01" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea id="description" name="description" class="form-control" rows="4" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+            </main>
+    </body>
+
+</html>

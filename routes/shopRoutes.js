@@ -15,4 +15,8 @@ router.use((req, res, next) => {
 // This routes handles GET requests to the root path "/".
 router.get('/', adminController.shopPage);
 
+router.get('/cart', adminController.cartPage);
+
+router.get('/products', adminController.productsPage);
+
 export default router;

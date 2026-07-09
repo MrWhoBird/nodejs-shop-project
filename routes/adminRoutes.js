@@ -9,5 +9,7 @@ const router = express.Router();
 // This route handles requests to the path prefixed with "/admin"
 router.get('/add-product', adminController.getAddProduct);
 router.post('/add-product', adminController.postAddProduct);
+router.get('/edit-product', adminController.getEditProduct);
+router.post('/delete-product', adminController.postDeleteProduct);
 
 export default router;

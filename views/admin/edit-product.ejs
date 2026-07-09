@@ -1,9 +1,9 @@
 <html lang="en">
 
-<%- include('includes/head.ejs') %>
+<%- include('../includes/head.ejs') %>
 
     <body>
-        <%- include('includes/navigation.ejs') %>
+        <%- include('../includes/navigation.ejs') %>
             <main class="container py-4">
                 <h1 class="mb-3">Welcome to the Shop!</h1>
                 <% if (products.length> 0) { %>
@@ -15,6 +15,8 @@
                                         <h5 class="card-title">
                                             <%= product.title %>
                                         </h5>
+                                        <img src="<%= product.pictureUrl %>" class="card-img-top"
+                                            alt="<%= product.title %>">
                                         <p class="card-text">
                                             <%= product.description %>
                                         </p>
@@ -22,6 +24,10 @@
                                     <div class="card-footer">
                                         <small class="text-muted">Price: $<%= product.price %></small>
                                     </div>
+                                    <form action="/admin/delete-product" method="POST">
+                                        <input type="hidden" name="productId" value="<%= product.id %>">
+                                        <button class="btn btn-danger m-3" type="submit">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                             <% }); %>

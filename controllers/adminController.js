@@ -2,7 +2,7 @@
 import Product from '../models/product.js';
 
 const getAddProduct = (req, res) => {
-    res.render('add-product', {
+    res.render('admin/add-product', {
         pageTitle: 'Add Product ejs',
         path: '/admin/add-product'
     });
@@ -11,6 +11,7 @@ const getAddProduct = (req, res) => {
 const postAddProduct = (req, res) => {
     const product = new Product(
         req.body.title,
+        req.body.pictureUrl,
         req.body.price,
         req.body.description
     );
@@ -32,7 +33,7 @@ const shopPage = (req, res) => {
     //console.log(data);
     const products = Product.fetchAll();
     console.log('products fetched:', products);
-    res.render('shop', {
+    res.render('shop/index', {
         pageTitle: 'Shop ejs',
         //products: data,
         //products: Product.fetchAll(),
@@ -42,5 +43,35 @@ const shopPage = (req, res) => {
     console.log('In the middleware!');
 }
 
+const cartPage = (req, res) => {
+    res.render('shop/cart', {
+        pageTitle: 'Cart ejs',
+        path: '/cart'
+    });
+};
+
+const productsPage = (req, res) => {
+    const products = Product.fetchAll();
+    res.render('shop/product-list', {
+        pageTitle: 'Products ejs',
+        products: products,
+        path: '/products'
+    });
+};
+
+const getEditProduct = (req, res) => {
+    const products = Product.fetchAll();
+    res.render('admin/edit-product', {
+        pageTitle: 'Edit Product ejs',
+        products: products,
+        path: '/admin/edit-product'
+    });
+};
+
+const postDeleteProduct = (req, res) => {
+    const productId = req.body.productId;
+    Product.deleteById(productId);
+    res.redirect('/admin/edit-product');
+};
 //export default { getAddProduct, postAddProduct, shopPage, data };
-export default { getAddProduct, postAddProduct, shopPage, data: Product.fetchAll() };
+export default { getAddProduct, postAddProduct, shopPage, cartPage, productsPage, getEditProduct, postDeleteProduct, data: Product.fetchAll() };
