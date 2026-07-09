@@ -12,18 +12,21 @@ app.listen(PORT, () => {
 });
 
 // define the view engine and the views folder
+// app.set() stores application settings/configuration
 app.set('views', 'views');
 app.set('view engine', 'ejs');
 
 // parse the body of the request and make it available in req.body
+// app.use register middleware
+// app.use() is about request handling
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// admin routes will be prefixed with /admin
+// admin routes prefixed with /admin
 app.use('/admin', adminRoutes);
 
 // shop routes for standard user
 app.use(shopRoutes);
 
-// handle all other requests that are not handled by the above route
+// handle all other requests that are not handled by the above routes
 app.use(utilRoutes);

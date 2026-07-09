@@ -1,15 +1,16 @@
 <header>
     <nav class="navbar navbar-expand bg-dark navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">Shop</a>
+            <a class="navbar-brand" href="/">Home page</a>
             <div class="navbar-nav">
-                <a class="nav-link <%= path === '/' ? 'active' : '' %>" href="/">Shop</a>
-                <a class="nav-link <%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Product</a>
-
+                <!-- shop pages -->
+                <a class="nav-link <%= path === '/' ? 'active' : '' %>" href="/">Home page</a>
                 <a class="nav-link <%= path === '/cart' ? 'active' : '' %>" href="/cart">Cart</a>
-                <a class="nav-link <%= path === '/products' ? 'active' : '' %>" href="/products">Products</a>
+                <a class="nav-link <%= path === '/checkout' ? 'active' : '' %>" href="/checkout">Checkout</a>
+                <a class="nav-link <%= path === '/product-list' ? 'active' : '' %>" href="/product-list">Products</a>
+                <!-- admin pages -->
+                <a class="nav-link <%= path === '/admin/add-product' ? 'active' : '' %>" href="/admin/add-product">Add Product</a>
                 <a class="nav-link <%= path === '/admin/edit-product' ? 'active' : '' %>" href="/admin/edit-product">Admin Products</a>
-
             </div>
         </div>
     </nav>

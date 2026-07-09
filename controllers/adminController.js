@@ -16,39 +16,13 @@ const postAddProduct = (req, res) => {
         req.body.description
     );
     product.save();
-    console.log('dane:', req.body);
-    console.log('product:', product);
-    console.log('title:', product.title);
-    // dont need this anymore 
-    // since we are using the Product class to store the data?
-    // data.push({
-    //     title: req.body.title,
-    //     price: req.body.price,
-    //     description: req.body.description
-    // });
+    //console.log('dane:', req.body);
+    //console.log('product:', product);
+    //console.log('title:', product.title);
     res.redirect('/');
 }
 
-const shopPage = (req, res) => {
-    //console.log(data);
-    const products = Product.fetchAll();
-    console.log('products fetched:', products);
-    res.render('shop/index', {
-        pageTitle: 'Shop ejs',
-        //products: data,
-        //products: Product.fetchAll(),
-        products: products,
-        path: '/'
-    });
-    console.log('In the middleware!');
-}
 
-const cartPage = (req, res) => {
-    res.render('shop/cart', {
-        pageTitle: 'Cart ejs',
-        path: '/cart'
-    });
-};
 
 const productsPage = (req, res) => {
     const products = Product.fetchAll();
@@ -73,5 +47,13 @@ const postDeleteProduct = (req, res) => {
     Product.deleteById(productId);
     res.redirect('/admin/edit-product');
 };
+
+const checkoutPage = (req, res) => {
+    res.render('shop/checkout', {
+        pageTitle: 'Checkout ejs',
+        path: '/checkout'
+    });
+};
+
 //export default { getAddProduct, postAddProduct, shopPage, data };
-export default { getAddProduct, postAddProduct, shopPage, cartPage, productsPage, getEditProduct, postDeleteProduct, data: Product.fetchAll() };
+export default { getAddProduct, postAddProduct, productsPage, getEditProduct, postDeleteProduct, checkoutPage, data: Product.fetchAll() };
