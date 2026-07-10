@@ -1,6 +1,6 @@
 import Product from '../models/product.js';
 
-const shopPage = (req, res) => {
+const getHomePage = (req, res) => {
     const products = Product.fetchAll();
     //console.log('products fetched:', products);
     res.render('shop/home', {
@@ -8,14 +8,29 @@ const shopPage = (req, res) => {
         products: products,
         path: '/'
     });
-    //console.log('In the middleware!');
 }
 
-const cartPage = (req, res) => {
+const getCartPage = (req, res) => {
     res.render('shop/cart', {
         pageTitle: 'Cart ejs',
         path: '/cart'
     });
 };
 
-export default {shopPage, cartPage};
+const getCheckoutPage = (req, res) => {
+    res.render('shop/checkout', {
+        pageTitle: 'Checkout ejs',
+        path: '/checkout'
+    });
+};
+
+const getProductListPage = (req, res) => {
+    const products = Product.fetchAll();
+    res.render('shop/product-list', {
+        pageTitle: 'Products ejs',
+        products: products,
+        path: '/product-list'
+    });
+};
+
+export default { getHomePage, getCartPage, getProductListPage, getCheckoutPage };

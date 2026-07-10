@@ -1,5 +1,4 @@
 import express from "express";
-import adminController from '../controllers/adminController.js';
 import shopController from '../controllers/shopController.js';
 
 const router = express.Router();
@@ -13,11 +12,9 @@ router.use((req, res, next) => {
     next();
 });
 
-// This routes handles GET requests to the root path "/".
-router.get('/', shopController.shopPage);
-router.get('/cart', shopController.cartPage);
-
-router.get('/checkout', adminController.checkoutPage);
-router.get('/product-list', adminController.productsPage);
+router.get('/', shopController.getHomePage);
+router.get('/cart', shopController.getCartPage);
+router.get('/checkout', shopController.getCheckoutPage);
+router.get('/product-list', shopController.getProductListPage);
 
 export default router;

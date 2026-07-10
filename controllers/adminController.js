@@ -1,4 +1,3 @@
-// const data = [];
 import Product from '../models/product.js';
 
 const getAddProduct = (req, res) => {
@@ -16,22 +15,10 @@ const postAddProduct = (req, res) => {
         req.body.description
     );
     product.save();
-    //console.log('dane:', req.body);
-    //console.log('product:', product);
-    //console.log('title:', product.title);
-    res.redirect('/');
+    // console.log('dane:', req.body);
+    // console.log('product:', product);
+    res.redirect('/admin/edit-product');
 }
-
-
-
-const productsPage = (req, res) => {
-    const products = Product.fetchAll();
-    res.render('shop/product-list', {
-        pageTitle: 'Products ejs',
-        products: products,
-        path: '/products'
-    });
-};
 
 const getEditProduct = (req, res) => {
     const products = Product.fetchAll();
@@ -48,12 +35,4 @@ const postDeleteProduct = (req, res) => {
     res.redirect('/admin/edit-product');
 };
 
-const checkoutPage = (req, res) => {
-    res.render('shop/checkout', {
-        pageTitle: 'Checkout ejs',
-        path: '/checkout'
-    });
-};
-
-//export default { getAddProduct, postAddProduct, shopPage, data };
-export default { getAddProduct, postAddProduct, productsPage, getEditProduct, postDeleteProduct, checkoutPage, data: Product.fetchAll() };
+export default { getAddProduct, postAddProduct, getEditProduct, postDeleteProduct, data: Product.fetchAll() };

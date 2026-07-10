@@ -1,8 +1,8 @@
 import express from 'express';
-import errorController from '../controllers/errorController.js';
+import utilController from '../controllers/utilController.js';
 
 const router = express.Router();
 
-router.use(errorController.display404);
+router.use(utilController.display404);
 
 export default router;
