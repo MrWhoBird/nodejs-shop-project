@@ -33,4 +33,17 @@ const getProductListPage = (req, res) => {
     });
 };
 
-export default { getHomePage, getCartPage, getProductListPage, getCheckoutPage };
+const getProductDetailPage = (req, res) => {
+    // GET form fields are added to the URL as query parameters
+    // e.g. /product-detail?productId=123.
+    const productId = req.query.productId;
+    const product = Product.findById(productId);
+    res.render('shop/product-detail', {
+        pageTitle: 'Product Detail ejs',
+        product: product,
+        path: '/product-detail'
+    });
+};
+
+
+export default { getHomePage, getCartPage, getProductListPage, getCheckoutPage, getProductDetailPage };

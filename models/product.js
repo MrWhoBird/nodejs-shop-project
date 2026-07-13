@@ -42,6 +42,11 @@ class Product {
         const updatedProducts = products.filter(product => product.id !== id);
         fs.writeFileSync(productsFilePath, JSON.stringify(updatedProducts));
     }
+
+    static findById(id) {
+        const products = getProductsFromFile();
+        return products.find(product => product.id === id);
+    }
 }
 
 export default Product;
