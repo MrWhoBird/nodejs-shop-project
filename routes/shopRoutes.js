@@ -14,7 +14,9 @@ router.use((req, res, next) => {
 
 router.get('/', shopController.getHomePage);
 router.get('/cart', shopController.getCartPage);
+router.post('/cart', shopController.addToCart);
 router.get('/checkout', shopController.getCheckoutPage);
 router.get('/product-list', shopController.getProductListPage);
+router.get('/product-detail/:productId', shopController.getProductDetailPage);
 
 export default router;

@@ -23,7 +23,16 @@
                                     <div class="card-footer">
                                         <small class="text-muted">Price: $<%= product.price %></small>
                                     </div>
-                                    <button class="btn btn-primary m-3">Add to Cart</button>
+                                    <%- include('../includes/addToCart.ejs', { product: product }) %>
+                                        <%# When a form is submitted with GET, the browser takes all form fields with a
+                                            name attribute and appends them to the URL as query parameters. %>
+                                            <!--
+                                            <form action="/product-detail" method="GET">
+                                                <input type="hidden" name="productId" value="<%= product.id %>">
+                                                <button class="btn btn-primary m-3">Details</button>
+                                            </form>
+                                            -->
+                                    <a class="btn btn-primary m-3" href="/product-detail/<%= product.id %>">Details</a>
                                 </div>
                             </div>
                             <% }); %>

@@ -4,7 +4,29 @@
 
     <body>
         <%- include('../includes/navigation.ejs') %>
-            THIS IS PRODUCT DETAIL PAGE
+            <main class="container py-4">
+                <h1 class="mb-3">Product Details</h1>
+                <% if (product) { %>
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <%= product.title %>
+                            </h5>
+                            <img src="<%= product.pictureUrl %>" class="card-img-top"
+                                alt="<%= product.title %>">
+                            <p class="card-text">
+                                <%= product.description %>
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">Price: $<%= product.price %></small>
+                        </div>
+                        <%- include('../includes/addToCart.ejs', { product: product }) %>
+                    </div>
+                <% } else { %>
+                    <p class="text-muted">Product not found.</p>
+                <% } %>
+            </main>
     </body>
 
 </html>
