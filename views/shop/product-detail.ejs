@@ -21,7 +21,7 @@
                         <div class="card-footer">
                             <small class="text-muted">Price: $<%= product.price %></small>
                         </div>
-                        <button class="btn btn-primary m-3">Add to Cart</button>
+                        <%- include('../includes/addToCart.ejs', { product: product }) %>
                     </div>
                 <% } else { %>
                     <p class="text-muted">Product not found.</p>

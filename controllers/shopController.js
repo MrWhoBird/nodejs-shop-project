@@ -1,4 +1,5 @@
 import Product from '../models/product.js';
+import Cart from '../models/cart.js';
 
 const getHomePage = (req, res) => {
     const products = Product.fetchAll();
@@ -16,6 +17,8 @@ const getCartPage = (req, res) => {
         path: '/cart'
     });
 };
+
+
 
 const getCheckoutPage = (req, res) => {
     res.render('shop/checkout', {
@@ -49,4 +52,4 @@ const getProductDetailPage = (req, res) => {
 };
 
 
-export default { getHomePage, getCartPage, getProductListPage, getCheckoutPage, getProductDetailPage };
+export default { getHomePage, getCartPage, addToCart, getProductListPage, getCheckoutPage, getProductDetailPage };
