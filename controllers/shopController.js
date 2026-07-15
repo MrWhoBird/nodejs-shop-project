@@ -18,7 +18,18 @@ const getCartPage = (req, res) => {
     });
 };
 
-
+const addToCart = (req, res) => {
+    const productId = req.body.productId;
+    const product = Product.findById(productId);
+    if (product) {
+        // Here you would typically add the product to the user's cart in a database or session
+        console.log(`Product added to cart: ${product.title}`);
+        Cart.addProduct(productId, product.price); // Assuming you have a method to handle adding to cart
+    } else {
+        console.log(`Product with ID ${productId} not found.`);
+    }
+    res.redirect('/cart');
+};
 
 const getCheckoutPage = (req, res) => {
     res.render('shop/checkout', {
