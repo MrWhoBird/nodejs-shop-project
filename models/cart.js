@@ -10,8 +10,6 @@ class Cart {
     static addProduct(productId, productPrice) {
         // Fetch the previous cart
         let cart = { products: [], totalPrice: 0 };
-        // Check if the cart already exists in the session or database
-        // If it does, load it into the 'cart' variable
         fs.readFile(productsFilePath, (err, fileContent) => {
             if (!err) {
                 cart = JSON.parse(fileContent);
@@ -32,7 +30,7 @@ class Cart {
             }
 
             // Update total price
-            cart.totalPrice += productPrice;
+            cart.totalPrice += +productPrice;
 
             // Save the updated cart back to the session or database
             fs.writeFile(productsFilePath, JSON.stringify(cart), (err) => {

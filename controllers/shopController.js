@@ -11,6 +11,7 @@ const getHomePage = (req, res) => {
     });
 }
 
+//getcart
 const getCartPage = (req, res) => {
     res.render('shop/cart', {
         pageTitle: 'Cart ejs',
@@ -18,6 +19,7 @@ const getCartPage = (req, res) => {
     });
 };
 
+//postcart
 const addToCart = (req, res) => {
     const productId = req.body.productId;
     const product = Product.findById(productId);

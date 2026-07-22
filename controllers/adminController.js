@@ -20,6 +20,13 @@ const postAddProduct = (req, res) => {
     res.redirect('/admin/edit-product');
 }
 
+// const getEditProduct = (req, res) => {
+//     res.render('admin/edit-product', {
+//         pageTitle: 'Edit Product ejs',
+//         path: '/admin/edit-product'
+//     });
+// };
+
 const getEditProduct = (req, res) => {
     const products = Product.fetchAll();
     res.render('admin/edit-product', {
